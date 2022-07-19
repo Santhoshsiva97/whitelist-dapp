@@ -55,6 +55,7 @@ export default function Home() {
   }
 
   const getNumberOfWhitelisted = async () => {
+    console.log('getNumberOfWhitelisted:::::::::')
     try {
       const provider = await getSignerOrProvider();
       const deployedContract = new Contract (
@@ -71,6 +72,7 @@ export default function Home() {
   }
 
   const checkIfAddressInWhitelist = async () => {
+    console.log('checkIfAddressInWhitelist:::::::')
     try{
 
       const signer = await getSignerOrProvider(true);
@@ -105,6 +107,7 @@ export default function Home() {
 
   const renderButton = () => {
     if (walletConnected) {
+      console.log('walletConnected::::::true')
       if (joinedWhitelist) {
         return (
           <div className={styles.description}>
@@ -114,6 +117,7 @@ export default function Home() {
       } else if (loading) {
         return <button className={styles.button}>Loading...</button>;
       } else {
+        console.log('addAddressToWhitelist::::::true')
         return (
           <button onClick={addAddressToWhitelist} className={styles.button}>
             Join the Whitelist
