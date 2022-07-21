@@ -125,11 +125,11 @@ export default function Home() {
         ]);
       }
     } else {
-      return (
+      return ([
         <button onClick={connectWallet} className={styles.button}>
           Connect your wallet
         </button>
-      );
+      ]);
     }
   };
 
