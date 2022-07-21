@@ -109,20 +109,20 @@ export default function Home() {
     if (walletConnected) {
       console.log('walletConnected::::::true')
       if (joinedWhitelist) {
-        return (
+        return ([
           <div className={styles.description}>
             Thanks for joining the Whitelist!
           </div>
-        );
+        ]);
       } else if (loading) {
-        return <button className={styles.button}>Loading...</button>;
+        return ([<button className={styles.button}>Loading...</button>]);
       } else {
         console.log('addAddressToWhitelist::::::true')
-        return (
+        return ([
           <button onClick={addAddressToWhitelist} className={styles.button}>
             Join the Whitelist
           </button>
-        );
+        ]);
       }
     } else {
       return (
