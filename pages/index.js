@@ -174,10 +174,10 @@ export default function Home() {
             {
               loading ? <button className={styles.button}>Loading...</button> 
               : !walletConnected 
-                  ? <button onClick={connectWallet} className={styles.button}>Connect your wallet</button> 
+                  ? <div>lol</div>//<button onClick={connectWallet} className={styles.button}>Connect your wallet</button> 
                   : joinedWhitelist 
                       ? <div className={styles.description}>Thanks for joining the Whitelist!</div> 
-                      : <button onClick={addAddressToWhitelist} className={styles.button}>Join the Whitelist</button>
+                      : <div>hi</div>//<button onClick={addAddressToWhitelist} className={styles.button}>Join the Whitelist</button>
             }
             </div>
           </div>
