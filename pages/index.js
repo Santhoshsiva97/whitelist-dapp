@@ -101,6 +101,7 @@ export default function Home() {
 
       checkIfAddressInWhitelist();
       getNumberOfWhitelisted();
+      return 1;
 
     } catch(err) {
       console.error('connection is failed::::::', err);
