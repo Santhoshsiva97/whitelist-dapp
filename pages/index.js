@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css'
 import { providers, Contract } from 'ethers';
 import Web3Model from 'web3modal';
 import { WHITELIST_CONTRACT_ADDRESS, abi } from '../constants';
+import { render } from 'react-dom';
 
 export default function Home() {
 
@@ -12,6 +13,7 @@ export default function Home() {
   const [ joinedWhitelist, setJoinedWhitelist ] = useState(false);
   const [ whitelistNumber, setWhitelistNumber ] = useState(0);
   const [ loading, setLoading ] = useState(false);
+  // const [ renderItem, setRenderItem ] = useState([]);
   const web3ModelRef = useRef();
 
   
@@ -106,31 +108,30 @@ export default function Home() {
   }
 
   const renderButton = () => {
+    // let contentItem = [];
     if (walletConnected) {
       console.log('walletConnected::::::true')
       if (joinedWhitelist) {
-        return ([
+        return (
           <div className={styles.description}>
             Thanks for joining the Whitelist!
           </div>
-        ]);
+        );
       } else if (loading) {
-        return ([<button className={styles.button}>Loading...</button>]);
+        return <button className={styles.button}>Loading...</button>;
       } else {
         console.log('addAddressToWhitelist::::::true')
-        return ([
+        return (
           <button onClick={addAddressToWhitelist} className={styles.button}>
             Join the Whitelist
           </button>
-        ]);
+        );
       }
     } else {
-      return ([
-        <button onClick={connectWallet} className={styles.button}>
-          Connect your wallet
-        </button>
-      ]);
+      return <button onClick={connectWallet} className={styles.button}>Connect your wallet</button> 
     }
+    // setRenderItem(contentItem)
+    // return contentItem;
   };
 
 
@@ -145,33 +146,47 @@ export default function Home() {
     }
   }, [walletConnected])
 
-  return (
-    <div>
-      <Head>
-        <title>Whitelist Dapp</title>
-        <meta name="description" content="Whitelist-Dapp" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className={styles.main}>
-        <div>
-          <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
-          <div className={styles.description}>
-            Its an NFT collection for developers in Crypto.
-          </div>
-          <div className={styles.description}>
-            {whitelistNumber} have already joined the Whitelist
-          </div>
-          {renderButton()}
-        </div>
-        <div>
-          <img className={styles.image} src="./crypto-devs.svg" />
-        </div>
-      </div>
+  
 
-      <footer className={styles.footer}>
-        Made with &#10084; by Crypto Devs
-      </footer>
-    </div>
-  );
+
+    return (
+      <div>
+        <Head>
+          <title>Whitelist Dapp</title>
+          <meta name="description" content="Whitelist-Dapp" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div className={styles.main}>
+          <div>
+            <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
+            <div className={styles.description}>
+              Its an NFT collection for developers in Crypto.
+            </div>
+            <div className={styles.description}>
+              {whitelistNumber} have already joined the Whitelist
+            </div>
+            <div>
+            {/* {renderButton()} */}
+            {
+              loading ? <button className={styles.button}>Loading...</button> 
+              : !walletConnected 
+                  ? <button onClick={connectWallet} className={styles.button}>Connect your wallet</button> 
+                  : joinedWhitelist 
+                      ? <div className={styles.description}>Thanks for joining the Whitelist!</div> 
+                      : <button onClick={addAddressToWhitelist} className={styles.button}>Join the Whitelist</button>
+            }
+            </div>
+          </div>
+          <div>
+            <img className={styles.image} src="./crypto-devs.svg" />
+          </div>
+        </div>
+
+        <footer className={styles.footer}>
+          Made with &#10084; by Crypto Devs
+        </footer>
+      </div>
+    )
+  
   
 }
