@@ -94,7 +94,8 @@ export default function Home() {
       );
       // call the numAddressesWhitelisted from the contract
       const _numberOfWhitelisted = await whitelistContract.numAddressesWhitelisted();
-      setNumberOfWhitelisted(_numberOfWhitelisted);
+      console.log('_numberOfWhitelisted:::::', _numberOfWhitelisted.toNumber())
+      setNumberOfWhitelisted(_numberOfWhitelisted.toNumber());
     } catch (err) {
       console.error(err);
     }
@@ -120,6 +121,7 @@ export default function Home() {
       const _joinedWhitelist = await whitelistContract.whitelistedAddress(
         address
       );
+      console.log('_joinedWhitelist::::::', _joinedWhitelist)
       setJoinedWhitelist(_joinedWhitelist);
     } catch (err) {
       console.error(err);
@@ -189,32 +191,37 @@ export default function Home() {
     }
   }, [walletConnected]);
 
-  return (
-    <div>
-      <Head>
-        <title>Whitelist Dapp</title>
-        <meta name="description" content="Whitelist-Dapp" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className={styles.main}>
-        <div>
-          <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
-          <div className={styles.description}>
-            Its an NFT collection for developers in Crypto.
-          </div>
-          <div className={styles.description}>
-            {numberOfWhitelisted} have already joined the Whitelist
-          </div>
-          {renderButton()}
-        </div>
-        <div>
-          <img className={styles.image} src="./crypto-devs.svg" />
-        </div>
-      </div>
+  // render() {
+  //   const item = renderButton();
 
-      <footer className={styles.footer}>
-        Made with &#10084; by Crypto Devs
-      </footer>
-    </div>
-  );
+    return (
+      <div>
+        <Head>
+          <title>Whitelist Dapp</title>
+          <meta name="description" content="Whitelist-Dapp" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div className={styles.main}>
+          <div>
+            <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
+            <div className={styles.description}>
+              Its an NFT collection for developers in Crypto.
+            </div>
+            <div className={styles.description}>
+              {numberOfWhitelisted} have already joined the Whitelist
+            </div>
+            {renderButton()}
+          </div>
+          <div>
+            <img className={styles.image} src="./crypto-devs.svg" />
+          </div>
+        </div>
+  
+        <footer className={styles.footer}>
+          Made with &#10084; by Crypto Devs
+        </footer>
+      </div>
+    );
+  //}
+
 }
