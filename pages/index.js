@@ -49,6 +49,7 @@ export default function Home() {
         setLoading(false);
         await getNumberOfWhitelisted();
         setJoinedWhitelist(true);
+        return 1;
 
       }
     } catch(err) {
@@ -67,6 +68,7 @@ export default function Home() {
       )
       const _whitelistNumber = await deployedContract.numAddressesWhitelisted;
       setWhitelistNumber(_whitelistNumber);
+      return 1;
 
     } catch(err) {
       console.error('error in getNumberOfWhitelisted::::', err)
@@ -86,6 +88,7 @@ export default function Home() {
       const signerAddress = signer.getAddress;
       const _setWhitelistAddress = deployedContract.whitelistedAddress(signerAddress);
       setJoinedWhitelist(_setWhitelistAddress);
+      return 1;
 
     } catch(err) {
       console.error('error in checkIfAddressInWhitelist::::::::', err);
